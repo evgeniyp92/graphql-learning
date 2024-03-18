@@ -32,4 +32,16 @@ export const resolvers: Resolvers = {
       return contextValue.dataSources.spotifyAPI.getPlaylist(args.id);
     },
   },
+  // the Playlist knows to call tracks() because it has a tracks key in the schema that is associated with this func, it
+  // will call it and expects the resolver to respond with the data that it wants. tracks in turn can call its own
+  // resolvers. each resolver gets its parent value as the first arg
+  Playlist: {
+    tracks: (parent, args, contextValue, info) => {
+      // @ts-expect-error
+      const { items = [] } = parent.tracks;
+      console.log(items);
+      // @ts-expect-error
+      return items.map(({ track }) => track);
+    },
+  },
 };
