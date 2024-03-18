@@ -27,5 +27,9 @@ export const resolvers: Resolvers = {
 
       return contextValue.dataSources.spotifyAPI.getFeaturedPlaylists();
     },
+
+    playlist: (parent, args, contextValue, info) => {
+      return contextValue.dataSources.spotifyAPI.getPlaylist(args.id);
+    },
   },
 };

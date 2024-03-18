@@ -11,4 +11,8 @@ export class SpotifyAPI extends RESTDataSource {
     // op-chaining with a nullish coalescing operator to return empty array if any of the props dont exist
     return response?.playlists?.items ?? [];
   }
+
+  getPlaylist(playlistId: string): Promise<Playlist> {
+    return this.get(`playlists/${playlistId}`);
+  }
 }

@@ -6,7 +6,12 @@ type Query {
   # what data can be queried.
   "Playlists hand-picked to be featured to all users."
   # Exclamation marks indicate the value cannot be null, and the array cannot be empty
+
+  # Get all featured playlists
   featuredPlaylists: [Playlist!]!
+
+  # Get a specific playlist, parens indicate an argument, and you can have several
+  playlist(id: ID!): Playlist
 }
 
 type Playlist {
