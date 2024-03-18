@@ -33,8 +33,9 @@ export const resolvers: Resolvers = {
     },
   },
   // the Playlist knows to call tracks() because it has a tracks key in the schema that is associated with this func, it
-  // will call it and expects the resolver to respond with the data that it wants. tracks in turn can call its own
-  // resolvers. each resolver gets its parent value as the first arg
+  // will call it and expects the resolver to respond with the data that it wants, if it is included in the request.
+  // tracks in turn can call its own resolvers. each resolver gets its parent value as the first arg. the point of this
+  // is to keep resolver functions atomic
   Playlist: {
     tracks: (parent, args, contextValue, info) => {
       // @ts-expect-error
