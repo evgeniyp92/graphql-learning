@@ -1,0 +1,16 @@
+# A schema is a collection of type definitions (hence "typeDefs") that together define the "shape" of queries that are
+# executed against your data.
+type Query {
+    # The query type is the type that actually facilitates all of the data retrieval in a GraphQL schema. It defines
+    # what data can be queried.
+    "Playlists hand-picked to be featured to all users."
+    # Exclamation marks indicate the value cannot be null, and the array cannot be empty
+    featuredPlaylists: [Playlist!]!
+}
+
+type Playlist {
+    # The ID of the playlist. Exclamation marks denote a required field
+    id: ID!
+    name: String!
+    description: String
+}

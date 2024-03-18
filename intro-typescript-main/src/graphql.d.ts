@@ -4,4 +4,3 @@ declare module '*.graphql' {
 
   export = Schema
 }
-npm
