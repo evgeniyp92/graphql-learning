@@ -2,10 +2,11 @@
 // parent, args, contextValue, and info, and they're responsible for returning the data for a particular field when it's
 // queried.
 
-export const resolvers = {
+import { Resolvers } from './types';
+
+export const resolvers: Resolvers = {
   // Object keys must correspond to schema types and fields
   Query: {
-    // @ts-expect-error
     featuredPlaylists: (_parent, __args, contextValue, ___info) => {
       /**
        * parent is the returned value of the resolver for this field's parent. This will be useful when dealing with
