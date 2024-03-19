@@ -12,7 +12,7 @@ const typeDefs = gql(
   })
 );
 
-console.log(typeDefs);
+// console.log(typeDefs);
 
 async function startApolloServer() {
   const server = new ApolloServer({ typeDefs: typeDefs, resolvers: resolvers });

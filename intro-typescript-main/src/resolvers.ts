@@ -2,7 +2,7 @@
 // parent, args, contextValue, and info, and they're responsible for returning the data for a particular field when it's
 // queried.
 
-import { Resolvers } from './types';
+import { Resolvers } from "./types";
 
 export const resolvers: Resolvers = {
   // Object keys must correspond to schema types and fields
@@ -32,6 +32,23 @@ export const resolvers: Resolvers = {
       return contextValue.dataSources.spotifyAPI.getPlaylist(args.id);
     },
   },
+
+  Mutation: {
+    addItemsToPlaylist: async (parent, args, contextValue, info) => {
+      const res = await contextValue.dataSources.spotifyAPI.addItemsToPlaylist(
+        args.input,
+      );
+      console.log(res);
+
+      return {
+        code: 200,
+        success: true,
+        message: "Successfully added tracks to playlist",
+        playlist: null,
+      };
+    },
+  },
+
   // the Playlist knows to call tracks() because it has a tracks key in the schema that is associated with this func, it
   // will call it and expects the resolver to respond with the data that it wants, if it is included in the request.
   // tracks in turn can call its own resolvers. each resolver gets its parent value as the first arg. the point of this
@@ -47,6 +64,6 @@ export const resolvers: Resolvers = {
   Track: {
     // since in our model we have durationMs and the api has a key of duration_ms, this is a helper function to set
     // durationMs to be whatever gets returned by duration_ms
-    durationMs: parent => parent.duration_ms,
+    durationMs: (parent) => parent.duration_ms,
   },
 };

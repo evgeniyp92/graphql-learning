@@ -14,6 +14,11 @@ type Query {
   playlist(id: ID!): Playlist
 }
 
+"Full notation for a mutation. Mutations can receive args and return a payload"
+type Mutation {
+  addItemsToPlaylist(input: AddItemsToPlaylistInput!): AddItemsToPlaylistPayload!
+}
+
 type Playlist {
   # The ID of the playlist. Exclamation marks denote a required field
   id: ID!
@@ -28,4 +33,24 @@ type Track {
   durationMs: Int!
   explicit: Boolean!
   uri: String!
+}
+
+"Governs the response object"
+type AddItemsToPlaylistPayload {
+  "Similar to HTTP status code, shows the status of the mutation"
+  code: Int!
+  "Indicates whether the mutation was successful"
+  success: Boolean!
+  "Human-readable message for the UI"
+  message: String!
+  "The playlist that contains the newly added items"
+  playlist: Playlist
+}
+
+"Inputs are a special kind of object type used to pass arguments to mutations. They are defined with the input keyword."
+input AddItemsToPlaylistInput {
+  "The ID of the playlist to add items to"
+  playlistId: ID!
+  "The URIs of the items to add to the playlist"
+  uris: [String!]!
 }
