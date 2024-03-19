@@ -38,11 +38,15 @@ export const resolvers: Resolvers = {
   // is to keep resolver functions atomic
   Playlist: {
     tracks: (parent, args, contextValue, info) => {
-      // @ts-expect-error
       const { items = [] } = parent.tracks;
       console.log(items);
-      // @ts-expect-error
       return items.map(({ track }) => track);
     },
+  },
+
+  Track: {
+    // since in our model we have durationMs and the api has a key of duration_ms, this is a helper function to set
+    // durationMs to be whatever gets returned by duration_ms
+    durationMs: parent => parent.duration_ms,
   },
 };

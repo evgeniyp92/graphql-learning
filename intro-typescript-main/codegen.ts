@@ -8,6 +8,10 @@ const config: CodegenConfig = {
       plugins: ['typescript', 'typescript-resolvers'],
       config: {
         contextType: './context#DataSourceContext', // path is relative to the types.ts file, not this file
+        mappers: {
+          Playlist: './models#PlaylistModel',
+          Track: './models#TrackModel',
+        },
       },
     },
   },
