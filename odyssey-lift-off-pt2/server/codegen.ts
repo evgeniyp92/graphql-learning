@@ -6,6 +6,9 @@ const config: CodegenConfig = {
     // what is this syntax
     "./src/types.ts": {
       plugins: ["typescript", "typescript-resolvers"],
+      config: {
+        contextType: "./context#DataSourceContext",
+      },
     },
   },
 };

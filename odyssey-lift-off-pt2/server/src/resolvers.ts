@@ -1,4 +1,6 @@
-export const resolvers = {
+import { Resolvers } from "./types";
+
+export const resolvers: Resolvers = {
   Query: {
     // returns an array of Tracks to populate the homepage grid
     tracksForHome: (parent, args, context, info) => {
@@ -7,7 +9,7 @@ export const resolvers = {
   },
   Track: {
     author: (parent, _, context) => {
-      return context.dataSources.trackAPI.getAuthor(parent.authorId)
-    }
-  }
+      return context.dataSources.trackAPI.getAuthor(parent.authorId);
+    },
+  },
 };
