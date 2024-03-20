@@ -18,8 +18,13 @@ export const resolvers: Resolvers = {
       return context.dataSources.trackAPI.getTracksForHome();
     },
 
-    track: (parent, args, context, info) => {
-      return context.dataSources.trackAPI.getTrack(args.id)
+    track: async (parent, args, context, info) => {
+      // get track details
+      const track = context.dataSources.trackAPI.getTrack(args.id)
+      // get module details for the track
+      const modules = await context.dataSources.trackAPI.getTrackModules(args.id)
+      // return the data shaped in a way the schema expects it
+      return {...track, modules}
     }
   },
   Track: {
