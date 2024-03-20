@@ -26,10 +26,25 @@ export type Author = {
   photo?: Maybe<Scalars['String']['output']>;
 };
 
+export type Module = {
+  __typename?: 'Module';
+  id: Scalars['ID']['output'];
+  /** Length of a module in minutes */
+  length?: Maybe<Scalars['Int']['output']>;
+  /** Module title */
+  title?: Maybe<Scalars['String']['output']>;
+};
+
 export type Query = {
   __typename?: 'Query';
+  track?: Maybe<Track>;
   /** Get tracks array for homepage grid */
   tracksForHome: Array<Track>;
+};
+
+
+export type QueryTrackArgs = {
+  id: Scalars['ID']['input'];
 };
 
 /** A track is a group of Modules that teaches about a specific topic */
@@ -37,11 +52,16 @@ export type Track = {
   __typename?: 'Track';
   /** The track's main author */
   author: Author;
+  /** The tracks complete description, can be in markdown */
+  description?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   /** The track's approximate length to complete, in minutes */
   length?: Maybe<Scalars['Int']['output']>;
+  modules: Array<Module>;
   /** The number of modules this track contains */
   modulesCount?: Maybe<Scalars['Int']['output']>;
+  /** Number of times a track has been viewed */
+  numberOfViews?: Maybe<Scalars['Int']['output']>;
   /** The track's main illustration to display in track card or track page detail */
   thumbnail?: Maybe<Scalars['String']['output']>;
   /** The track's title */
