@@ -19,6 +19,19 @@ export const typeDefs = gql`
     length: Int
     "The number of modules this track contains"
     modulesCount: Int
+    "The tracks complete description, can be in markdown"
+    description: String
+    "Number of times a track has been viewed"
+    numberOfViews: Int
+    modules: [Module!]!
+  }
+  
+  type Module {
+    id: ID!
+    "Module title"
+    title: String
+    "Length of a module in minutes"
+    length: Int
   }
 
   "Author of a complete Track"
