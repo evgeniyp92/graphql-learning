@@ -13,10 +13,10 @@ export class TrackAPI extends RESTDataSource {
   }
 
   getTrack(trackId: string) {
-    return this.get<TrackModel>(`tracks/${trackId}`);
+    return this.get<TrackModel>(`track/${trackId}`);
   }
 
   getTrackModules(trackId: string) {
-    return this.get<ModuleModel[]>(`tracks/${trackId}/modules`);
+    return this.get<ModuleModel[]>(`track/${trackId}/modules`);
   }
 }
