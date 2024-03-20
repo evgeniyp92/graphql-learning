@@ -17,6 +17,10 @@ export const resolvers: Resolvers = {
     tracksForHome: (parent, args, context, info) => {
       return context.dataSources.trackAPI.getTracksForHome();
     },
+
+    track: (parent, args, context, info) => {
+      return context.dataSources.trackAPI.getTrack(args.id)
+    }
   },
   Track: {
     author: (parent, _, context) => {
