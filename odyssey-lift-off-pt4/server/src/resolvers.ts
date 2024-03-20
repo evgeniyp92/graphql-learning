@@ -24,12 +24,21 @@ export const resolvers: Resolvers = {
   },
   Mutation: {
     incrementTrackViews: async (parent, args, context, info) => {
-      const track = await context.dataSources.trackAPI.incrementTrackViews(args.id)
-      return {
-        code: 200,
-        success: true,
-        message: 'Successfully incremented track views',
-        track: track
+      try {
+        const track = await context.dataSources.trackAPI.incrementTrackViews(args.id)
+        return {
+          code: 200,
+          success: true,
+          message: 'Successfully incremented track views',
+          track: track
+        }
+      } catch (err) {
+        return {
+          code: err.extensions.response.status,
+          success: false,
+          message: err.extensions.response.body,
+          track: null
+        }
       }
     }
   },
