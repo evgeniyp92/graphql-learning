@@ -22,6 +22,17 @@ export const resolvers: Resolvers = {
       return context.dataSources.trackAPI.getTrack(args.id)
     }
   },
+  Mutation: {
+    incrementTrackViews: async (parent, args, context, info) => {
+      const track = await context.dataSources.trackAPI.incrementTrackViews(args.id)
+      return {
+        code: 200,
+        success: true,
+        message: 'Successfully incremented track views',
+        track: track
+      }
+    }
+  },
   Track: {
     author: (parent, _, context) => {
       return context.dataSources.trackAPI.getAuthor(parent.authorId);
