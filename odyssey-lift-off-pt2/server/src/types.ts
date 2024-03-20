@@ -1,4 +1,5 @@
 import { GraphQLResolveInfo } from 'graphql';
+import { TrackModel } from './models';
 import { DataSourceContext } from './context';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -125,7 +126,7 @@ export type ResolversTypes = {
   Int: ResolverTypeWrapper<Scalars['Int']['output']>;
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
-  Track: ResolverTypeWrapper<Track>;
+  Track: ResolverTypeWrapper<TrackModel>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -136,7 +137,7 @@ export type ResolversParentTypes = {
   Int: Scalars['Int']['output'];
   Query: {};
   String: Scalars['String']['output'];
-  Track: Track;
+  Track: TrackModel;
 };
 
 export type AuthorResolvers<ContextType = DataSourceContext, ParentType extends ResolversParentTypes['Author'] = ResolversParentTypes['Author']> = {
